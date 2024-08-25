@@ -7,6 +7,7 @@ class Patient:
         self.age = age
         self.medical_history = medical_history
 
+# Class for Nodes 
 class TreeNode:
     def __init__(self, patient):
         self.patient = patient
@@ -14,6 +15,7 @@ class TreeNode:
         self.right = None
         self.height = 1
 
+# Class for AVL tree implementation
 class AVLTree:
     def __init__(self):
         self.root = None
@@ -28,6 +30,9 @@ class AVLTree:
 
         root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
         balance = self.get_balance(root)
+
+
+# Rotation is used to balancing 
 
         # Left Left Case
         if balance > 1 and patient.patient_id < root.left.patient.patient_id:
@@ -48,6 +53,8 @@ class AVLTree:
             return self.left_rotate(root)
 
         return root
+    
+# Delete Oprs
 
     def delete(self, root, patient_id):
         if not root:
@@ -147,6 +154,9 @@ class AVLTree:
             res = res + self.in_order(root.right)
         return res
 
+
+# Queue Class for appointment scheduling 
+
 class Queue:
     def __init__(self):
         self.items = []
@@ -170,6 +180,8 @@ class Queue:
     def get_all(self):
         return self.items[:]
 
+# Stack for handling Emergency cases
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -192,6 +204,8 @@ class Stack:
 
     def get_all(self):
         return self.items[:]
+
+# Whole implementation of 3 Data structures ( HMS )
 
 class HospitalManagementSystem:
     def __init__(self):
@@ -244,7 +258,10 @@ class HospitalManagementSystem:
         else:
             print("Patient not found.")
         return patient_node
+    
+    # List all patients in 3 cat : Inserted, Emergency & appointment 
 
+    # 1) AVL : check-in patients list
     def list_all_patients_in_avl(self):
         patients = self.avl.in_order(self.avl.root)
         if patients:
@@ -253,7 +270,8 @@ class HospitalManagementSystem:
                 print(f"\nID: {patient.patient_id},\n Name: {patient.name},\n Age: {patient.age},\n Medical History: {patient.medical_history}")
         else:
             print("\nNo patients in AVL Tree.")
-
+    
+    # 2) Queue : Appointment patients list
     def list_all_appointments(self):
         patients = self.appointment_queue.get_all()
         if patients:
@@ -263,6 +281,7 @@ class HospitalManagementSystem:
         else:
             print("No patients in appointment queue.")
 
+    # 3) Stack : Emergency Patients list 
     def list_all_emergency_cases(self):
         patients = self.emergency_stack.get_all()
         if patients:
@@ -276,9 +295,9 @@ def main():
     hms = HospitalManagementSystem()
     
     while True:
-        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
-        print("Hospital Management System Menu")
-        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■🟠")
+        print("Hospital Management System Menu 🏥")
+        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■🟠")
 
         print("1. Register a new patient")
         print("2. Check-in a patient")
@@ -292,10 +311,10 @@ def main():
         print("10. List all appointments in queue")
         print("11. List all emergency cases in stack")
         print("12. Exit")
-        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+        print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■🟠")
 
-        choice = input("Enter your choice (1-12): ")
-        print("________________Response !____________________________")
+        choice = input("Enter your choice (1-12):\n ")
+        print("_____________________😊_______________________\n")
 
         if choice == '1':
             patient_id = int(input("Enter Patient ID: "))
@@ -353,7 +372,7 @@ def main():
             hms.list_all_emergency_cases()
 
         elif choice == '12':
-            print("Exiting the system. Be healthy !")
+            print("Exiting the system. Be healthy !👼🏻")
             break
 
         else:
